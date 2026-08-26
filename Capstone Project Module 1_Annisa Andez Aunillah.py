@@ -841,7 +841,7 @@ def main_menu():
     # If user want to Exit Program
     elif user==10:
         print("="*33,"👋👋👋 Thank you for visiting Mountea Time. See you again! 👋👋👋","="*33)
-
+        staff_main_menu()
     # Else (not choose number 1-10)
     else:
         print("[‼️] You entered wrong number. Please enter number code 1-10.")
