@@ -769,7 +769,7 @@ def user_main_menu(a):
 
     if role=='Owner' or role=='Manager':
         main_menu()
-        user_login()
+        
     # If dictStaff['Role'][role]=='Staff'
     else:
         staff_main_menu()
