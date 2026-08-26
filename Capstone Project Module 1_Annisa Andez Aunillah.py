@@ -533,8 +533,7 @@ def update_menu():
             3. Desc Item
             4. Price Item
             5. Stock Item
-            6. Status Item
-
+            
             Choose part of menu you want to update: """))
 
             # If user choose to update Category Name of Item
