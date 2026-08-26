@@ -10,12 +10,12 @@ Create Function:
 Adding new item to item's list (Item ID is automatically generated), adding new active promo based on item, adding new active promo based on minimum total purchase, adding item to the cart (if any buyer).
 
 Read Function:
-Read all active item, read all active promo based on item, read all active promo based on minimum total purchase, read multiple item/s based on search by 'ItemID', 'Item Name', and 'Category', read user'spurchase invoice
+Read all active item, read all active promo based on item, read all active promo based on minimum total purchase, read multiple item/s based on search by Item ID/ Item Name/ Category, read user's purchase invoice
 
 Update Function:
-Update part of item such as category name, item name, description, price, stock. For update price, there is a confirmation if the item have an active promotion.
+Update part of item such as category name, item name, description, price, stock. For update price, there is a confirmation if the item has an active promotion.
 
 Delete Function:
-Delete item from item'list one by one, delete all item on the same category, delete active promo based on item, delete active promo based on minimum total purchase. For delete item, if the item still have an active promo, there is a notice that if we proceed, the promotion will also be removed.
+Delete item from item'list one by one, delete all item in the same category, delete active promo based on item, delete active promo based on minimum total purchase. For delete item function, if the item still has an active promo, there is a notice that If it proceeds anyway, the promotion will also be removed.
 
-Note: Only Merchant's Staffs can access this program. Also, there is the difference access depends on Staff'role.
+Note: Only Merchant's Staffs can access this program. Also, there are differences in access depending on Staff's role.
