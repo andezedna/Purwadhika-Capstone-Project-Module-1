@@ -29,17 +29,21 @@ Create Function:
 4. Adding item to the cart (if any buyer)<br>
    Inputs that required for this request are Item ID and quantity its item.<br>
 <br>
+
 Read Function:<br>
 1. Read all active item<br>
 2. Read all active promo based on item<br>
 3. Read all active promo based on minimum total purchase<br>
 4. Read multiple item/s based on search by Item ID/ Item Name/ Category<br>
 5. Read user's purchase invoice.<br>
+
 All of the read functions above can display full details of the selected request, if any.<br>
 <br>
+
 Update Function:<br>
 1. Update part of item<br>
    Update part of item, such as category name, item name, description, price, stock.<br>
+   
 2. Delete item<br>
    There is a conditional statement for this function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.<br>
 
@@ -51,9 +55,11 @@ Delete Function:<br>
 <br>
 There is a conditional statement for delete function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.
 <br>
+
 How to use this CRUD Program:
 This CRUD Program can only be excuted by owner, manager, and staff of the Merchant that already registered in Dictionary of Merchant's Staff. The input consists of a registered username and password. There are differences in access depending on Staff's role.
 <br>
+
 The following are the list of usernames and passwords that have been registered:<br>
 1. Username: MT.Owner, Password: 240901<br>
 2. Username: MT.Manager, Password: 100401<br>
