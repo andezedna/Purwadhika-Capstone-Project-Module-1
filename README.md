@@ -1,7 +1,8 @@
 # Capstone-Project-Module-1
-CRUD Program in Python
-Study Case : Merchant Item Sales
-This program's features are Create, Read, Update, and Delete function with regular function.
+CRUD Program in Python<br>
+<br>
+Study Case : Merchant Item Sales<br>
+This program's features are Create, Read, Update, and Delete function with regular function.<br>
 
 List of Dictionaries:
 1. Distionary of Active Items
