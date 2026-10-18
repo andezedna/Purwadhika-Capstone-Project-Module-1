@@ -18,30 +18,30 @@ Primary Key: Item ID & User's Transaction.
 Create Function:
 1. Adding new item to item's list (Item ID is automatically generated)<br>
    The following are several inputs required for this function:<br>
-   Category name, Item name, Item Description, Item Price, and Item Stock.
+   Category name, Item name, Item Description, Item Price, and Item Stock.<br>
    
 2. Adding new active promo based on item<br>
-   Inputs that required for this request are Item ID and value promo its item.
+   Inputs that required for this request are Item ID and value promo its item.<br>
    
 3. Adding new active promo based on minimum total purchase<br>
-   Inputs that required for this request are minimun total purchase to qualify the promotion and value promo its minimum total purchase.
+   Inputs that required for this request are minimun total purchase to qualify the promotion and value promo its minimum total purchase.<br>
    
 4. Adding item to the cart (if any buyer)<br>
    Inputs that required for this request are Item ID and quantity its item.
 <br>
 Read Function:<br>
-1. Read all active item
-2. Read all active promo based on item
-3. Read all active promo based on minimum total purchase
-4. Read multiple item/s based on search by Item ID/ Item Name/ Category
+1. Read all active item<br>
+2. Read all active promo based on item<br>
+3. Read all active promo based on minimum total purchase<br>
+4. Read multiple item/s based on search by Item ID/ Item Name/ Category<br>
 5. Read user's purchase invoice.<br>
-All of the read functions above can display full details of the selected request, if any.
+All of the read functions above can display full details of the selected request, if any.<br>
 
 Update Function:<br>
 1. Update part of item<br>
    Update part of item, such as category name, item name, description, price, stock
 2. Delete item<br>
-   There is a conditional statement for this function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.
+   There is a conditional statement for this function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.<br>
 
 Delete Function:<br>
 1. Delete item from item's list one by one
