@@ -3,19 +3,56 @@ CRUD Program in Python
 Study Case : Merchant Item Sales
 This program's features are Create, Read, Update, and Delete function with regular function.
 
-List of Dictionaries: Active Items, Active Promotions Based on Item, Active Promotions Based on Minimun Total Purchase, User's Cart, User's Transactions, and Merchant's Staff.
+List of Dictionaries:
+1. Distionary of Active Items
+2. Dictionary of Inactive Items
+3. Dictionary of Active Promotions Based on Item
+4. Dictionary of Active Promotions Based on Minimun Total Purchase
+5. Dictionary of User's Cart
+6. Dictionary of Users' Transactions
+7. Dictionary of Merchant's Staff
+
 Primary Key: Item ID & User's Transaction.
 
 Create Function:
-Adding new item to item's list (Item ID is automatically generated), adding new active promo based on item, adding new active promo based on minimum total purchase, adding item to the cart (if any buyer).
-
+1. Adding new item to item's list (Item ID is automatically generated)
+   The following are several inputs required for this function:
+   Category name, Item name, Item Description, Item Price, and Item Stock.
+   
+2. Adding new active promo based on item
+   Inputs that required for this request are Item ID and value promo its item.
+   
+3. Adding new active promo based on minimum total purchase
+   Inputs that required for this request are minimun total purchase to qualify the promotion and value promo its minimum total purchase.
+   
+4. Adding item to the cart (if any buyer).
+   Inputs that required for this request are Item ID and quantity its item.
+   
 Read Function:
-Read all active item, read all active promo based on item, read all active promo based on minimum total purchase, read multiple item/s based on search by Item ID/ Item Name/ Category, read user's purchase invoice
+Read all active item, read all active promo based on item, read all active promo based on minimum total purchase, read multiple item/s based on search by Item ID/ Item Name/ Category, read user's purchase invoice.
+All of the read functions above can display full details of the selected request, if any.
 
 Update Function:
-Update part of item such as category name, item name, description, price, stock. For delete item, if the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.
+1. Update part of item
+   Update part of item, such as category name, item name, description, price, stock
+2. Delete item
+   There is a conditional statement for this function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.
 
 Delete Function:
-Delete item from item's list one by one, delete all item in the same category, delete active promo based on item, delete active promo based on minimum total purchase. For delete item function, if the item still has an active promo, there is a notice that If it proceeds anyway, the promotion will also be removed.
+1. Delete item from item's list one by one
+2. Delete all item in the same category
+3. Delete active promo based on item
+4. Delete active promo based on minimum total purchase.
 
-Note: Only Merchant's Staffs can access this program. Also, there are differences in access depending on Staff's role.
+There is a conditional statement for delete function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.
+
+How to use this CRUD Program:
+This CRUD Program can only be excuted by owner, manager, and staff of the Merchant that already registered in Dictionary of Merchant's Staff. The input consists of a registered username and password. There are differences in access depending on Staff's role.
+
+The following are the list of usernames and passwords that have been registered:
+1. Username: MT.Owner, Password: 240901
+2. Username: MT.Manager, Password: 100401
+3. Username: MT.Staff1, Password: 230299
+4. Username: MT.Staff2, Password: 150700
+5. Username: MT.Staff3, Password 051298
+6. Username: MT.Staff4, Password: 030801
