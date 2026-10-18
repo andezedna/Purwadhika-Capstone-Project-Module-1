@@ -56,7 +56,7 @@ Delete Function:<br>
 There is a conditional statement for delete function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.
 <br>
 
-How to use this CRUD Program:
+How to use this CRUD Program:<br>
 This CRUD Program can only be excuted by owner, manager, and staff of the Merchant that already registered in Dictionary of Merchant's Staff. The input consists of a registered username and password. There are differences in access depending on Staff's role.
 <br>
 
