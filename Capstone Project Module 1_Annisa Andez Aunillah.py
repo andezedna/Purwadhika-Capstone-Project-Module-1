@@ -28,9 +28,18 @@ dictMenu={
              12000,17000,17000,15000,15000],
     'Stock':[20,20,20,20,20,
             15,15,15,15,20,
-            30,25,25,25,20]
-}
+            30,25,25,25,20]}
 
+# Dictionary Delete Item
+dictDelMenu={
+    'Item ID':['ID16','ID17','ID18','ID19','ID20'],
+    'Category':['Snack','Snack','Snack','Snack','Snack'],
+    'Item':['French Fries','Mix Platter','Onion Rings','Garlic Bread','Roasted Bread'],
+    'Status':['Inactive','Inactive','Inactive','Inactive','Inactive'],
+    'Desc':['French Fries+Chilli Sauce','Fries+Sausage+Onion Rings','Just Onion Ring','Sweet n Sour','With Strawberry Jam'],
+    'Price':[22000,30000,23000,32000,32000],
+    'Stock':[0,0,0,0,0]
+}
 # Dictionary Item Promo
 dictItemPromo={
     'Item ID':[],
@@ -118,27 +127,37 @@ def add_menu():
 
             #  Input price for new item
             while True:
-                addPrice=int(input('Input price for new item: '))
-                if addPrice>0:
-                    dictMenu['Price'].append(addPrice)
-                    break
-                else:
+                try:
+                    addPrice=input('Input price for new item: ')
+                    addPrice_num=int(addPrice)
+                    if addPrice_num>0:
+                        dictMenu['Price'].append(addPrice_num)
+                        break
+                    else:
                      print('[‼️] Price format incorrect.')
+                     break
+                except ValueError:
+                    print('[‼️] That is not a valid number. Please try again.')
 
             #  Input stock for new item
             while True:
-                addStock=int(input('Input stock for new item: '))
-                if addStock>=0:
-                    dictMenu['Stock'].append(addStock)
+                try:
+                    addStock=input('Input stock for new item: ')
+                    addStock_num=int(addStock)
+                    if addStock_num>=0:
+                        dictMenu['Stock'].append(addStock_num)
+                        break
+                    else:
+                        print('[‼️] Stock format incorrect.')
                     break
-                else:
-                    print('[‼️] Stock format incorrect.')
+                except ValueError:
+                    print('[‼️] That is not a valid number. Please try again.')
 
             # Add Item Status for New Item
             dictMenu['Status'].append('Active')
 
             # Add Item ID for New Item
-            for i in dictMenu['Item ID']:
+            for i in dictMenu['Item ID'] + dictDelMenu['Item ID']:
                 idx=[int(i.replace('ID',''))]
             checking=max(idx)+1
             newItemID='ID'+str(checking)
@@ -165,13 +184,21 @@ def add_promo_item():
 
         elif newPromo not in dictItemPromo['Item ID']:
             if newPromo in dictMenu['Item ID']:
-                ValueItemPromo=int(input('Enter discount amount in %: '))
-                ValueItemPromo=ValueItemPromo/100
-                dictItemPromo['Item ID'].append(newPromo)
-                dictItemPromo['Value'].append(ValueItemPromo)
-                print('[✨] Promo was successfully active!')
-                diplay_promo_list()
-                break
+                try:
+                    ValueItemPromo=input('Enter discount amount in %: ')
+                    ValueItemPromo_num=int(ValueItemPromo)
+                    if 0<ValueItemPromo_num<=100:
+                        ValueItemPromo_num=ValueItemPromo_num/100
+                        dictItemPromo['Item ID'].append(newPromo)
+                        dictItemPromo['Value'].append(ValueItemPromo_num)
+                        print('[✨] Promo was successfully active!')
+                        diplay_promo_list()
+                        break
+                    else:
+                        print('[‼️] Please input a number in the range 0-100.')
+
+                except ValueError:
+                    print('[‼️] That is not a valid number. Please try again.')
 
             else:
                 print(f"[‼️] Item ID not exist. Please enter the correct Item ID.")
@@ -179,19 +206,30 @@ def add_promo_item():
 # Function add_promo_cart(): to Add Promotion Based on Total Cart
 def add_promo_cart():
     while True:
-        ValueTotalCart=int(input('Enter the minimun total purchase to qualify the promotion: '))
+        try:
+            ValueTotalCart=input('Enter the minimun total purchase to qualify the promotion: ')
+            ValueTotalCart_num=int(ValueTotalCart)
+            if ValueTotalCart_num in dictCartPromo['Amount Cart']:
+                print('[‼️] You cant add multiple promo with same minimum total purchase.')
 
-        if ValueTotalCart in dictCartPromo['Amount Cart']:
-            print('[‼️] You cant add multiple promo with same minimum total purchase.')
+            else:
+                try:
+                    ValueDisc=input('Enter discount amount in %: ')
+                    ValueDisc_num=int(ValueDisc)
+                    if 0<ValueDisc_num<=100:
+                        ValueDisc_num=ValueDisc_num/100
+                        dictCartPromo['Amount Cart'].append(ValueTotalCart_num)
+                        dictCartPromo['Value'].append(ValueDisc_num)
+                        print('[✨] Promo was successfully active!')
+                        diplay_promo_list()
+                        break
+                    else:
+                        print('[‼️] Please input a number in the range 0-100.')
+                except ValueError:
+                    print('[‼️] That is not a valid number. Please try again.')
 
-        else:
-            ValueDisc=int(input('Enter discount amount in %: '))
-            ValueDisc=ValueDisc/100
-            dictCartPromo['Amount Cart'].append(ValueTotalCart)
-            dictCartPromo['Value'].append(ValueDisc)
-            print('[✨] Promo was successfully active!')
-            diplay_promo_list()
-            break
+        except ValueError:
+            print('[‼️] That is not a valid number. Please try again.')
 
 # Function diplay_promo_list() : to Display Promo List
 def diplay_promo_list():
@@ -219,6 +257,7 @@ def diplay_promo_list():
             print(f"{i+1}. Get discount {(dictCartPromo['Value'][i])*100}% with minimum purchase Rp {dictCartPromo['Amount Cart'][i]:,} 🤩")
 
     print("\n\n")
+
 # Function add_new_promo() :  to Add New Promo
 def add_new_promo():
     while True:
@@ -321,6 +360,14 @@ def delete_menu():
             else:
                 print(f"[✨] Item {dictMenu['Item'][dictMenu['Item ID'].index(delItem)]} was successfully deleted from menu list!")
 
+            dictDelMenu['Item ID'].append(delItem)
+            dictDelMenu['Category'].append(dictMenu['Category'][idx_del_item])
+            dictDelMenu['Item'].append(dictMenu['Item'][idx_del_item])
+            dictDelMenu['Status'].append('Inactive')
+            dictDelMenu['Desc'].append(dictMenu['Desc'][idx_del_item])
+            dictDelMenu['Stock'].append(dictMenu['Stock'][idx_del_item])
+            dictDelMenu['Price'].append(dictMenu['Price'][idx_del_item])
+
             del dictMenu['Item ID'][idx_del_item]
             del dictMenu['Category'][idx_del_item]
             del dictMenu['Item'][idx_del_item]
@@ -328,7 +375,7 @@ def delete_menu():
             del dictMenu['Desc'][idx_del_item]
             del dictMenu['Stock'][idx_del_item]
             del dictMenu['Price'][idx_del_item]
-        
+            
             break
 
         else:
@@ -337,23 +384,28 @@ def delete_menu():
 # Function delete_promo(): to Delete Promo
 def delete_promo():
     while True:
-        delPromo=int(input("""
-        Type of Promo:
-        1. Promotion basen on item
-        2. Promotion based on total cart value
-        Enter the number code you want to create its promo: """))
-    
-        # If user choose number 1 (User want to add promotion basen on item)
-        if delPromo==1:
-            delete_promo_item()
-            break
+        try:
+            delPromo=input("""
+            Type of Promo:
+            1. Promotion basen on item
+            2. Promotion based on total cart value
+            Enter the number code you want to create its promo: """)
+            delPromo_num=int(delPromo)
+            
+            # If user choose number 1 (User want to add promotion basen on item)
+            if delPromo_num==1:
+                delete_promo_item()
+                break
 
-        elif delPromo==2:
-            delete_promo_cart()
-            break
+            elif delPromo_num==2:
+                delete_promo_cart()
+                break
 
-        else:
-            print('[‼️] You entered wrong number. Please enter number code 1-2.')
+            else:
+                print('[‼️] You entered wrong number. Please enter number code 1-2.')
+
+        except ValueError:
+            print('[‼️] That is not a valid number. Please try again.')
 
 # Function delete_promo_item() :  to Delete Promo Based on Item
 def delete_promo_item():
@@ -376,17 +428,23 @@ def delete_promo_item():
 # Function delete_promo_cart() :  to Delete Promo Based on Minimun Total Purchase
 def delete_promo_cart():
     while True:
-        delPromoCart=int(input('Enter minimun total purchase promotion you want to delete: '))
-        if delPromoCart not in dictCartPromo['Amount Cart']:
-            print(f'Minimun total purchase {delPromoCart} not found. Please enter the correct minimum total purchase promotion.')
+        try:
+            delPromoCart=input('Enter minimun total purchase promotion you want to delete: ')
+            delPromoCart_num=int(delPromoCart)
+            
+            if delPromoCart_num not in dictCartPromo['Amount Cart']:
+                print(f'Minimun total purchase {delPromoCart_num} not found. Please enter the correct minimum total purchase promotion.')
 
-        # If delPromoItem in dictCartPromo['Amount Cart']
-        else: 
-            idx_promo_cart=dictCartPromo['Amount Cart'].index(delPromoCart)
-            del dictCartPromo['Amount Cart'][idx_promo_cart]
-            del dictCartPromo['Value'][idx_promo_cart]
-            print(f'[✨] Active promo with minimum total purchase Rp {delPromoCart:,} was successfully deleted !\n')
-            break
+            # If delPromoCart_num in dictCartPromo['Amount Cart']
+            else: 
+                idx_promo_cart=dictCartPromo['Amount Cart'].index(delPromoCart_num)
+                del dictCartPromo['Amount Cart'][idx_promo_cart]
+                del dictCartPromo['Value'][idx_promo_cart]
+                print(f'[✨] Active promo with minimum total purchase Rp {delPromoCart_num:,} was successfully deleted !\n')
+                break
+
+        except ValueError:
+            print('[‼️] That is not a valid number. Please try again.')
 
 # Function display_cart() : Display User's Cart
 def display_cart():
@@ -401,14 +459,7 @@ def display_cart():
         if total_shop>i:
             valueCartPromo=[i]
 
-    for i in dictTsc['ID Tsc']:
-        idx_tsc=[int(i.replace('TSC',''))]
-    checking=max(idx_tsc)+1
-    newTSC='TSC'+str(checking)
-    dictTsc['ID Tsc'].append(newTSC)
-    
     print('*'*24,'🛒🛒🛒🛒🛒 HELLO, THIS IS YOUR CART! 🛒🛒🛒🛒🛒','*'*24,'\n')
-    print(f'Transaction ID : {newTSC}\n')
     print('-'*96)
     print(f'| {'Category':<15}| {'Item':<20}| {'QTY':<15}| {'Price':<15}| {'Total':<20}|')
     print('-'*96)
@@ -478,7 +529,13 @@ def user_payment():
 
     for key in dictCart:
         dictCart[key].clear()
-    
+
+    for i in dictTsc['ID Tsc']:
+        idx_tsc=[int(i.replace('TSC',''))]
+    checking=max(idx_tsc)+1
+    newTSC='TSC'+str(checking)
+    dictTsc['ID Tsc'].append(newTSC)
+        
     while True:
         addPayment=int(input("""
         Payment Type:
@@ -493,10 +550,10 @@ def user_payment():
             while True:
                 userPayment=int(input('Submit the payment: '))
                 if userPayment>total_shop:
-                    print(f'Thank you for shopping at Mountea Time. Your change Rp {(userPayment-total_shop):,}')
+                    print(f'[✨] Your transaction ID : {newTSC}. Thank you for shopping at Mountea Time. Your change Rp {(userPayment-total_shop):,}')
                     break
                 elif userPayment==total_shop:
-                    print(f'Thank you for shopping at Mountea Time. You have the exact amount, there is no change.')
+                    print(f'[✨] Your transaction ID : {newTSC}. Thank you for shopping at Mountea Time. You have the exact amount, there is no change.')
                     break
                 else:
                     print(f'Your payment is short by Rp {(total_shop-userPayment):,}')
@@ -509,7 +566,7 @@ def user_payment():
             while True:
                 userPayment=int(input('Submit the payment: '))
                 if userPayment==total_shop:
-                    print(f'Thank you for shopping at Mountea Time.')
+                    print(f'[✨] Your transaction ID : {newTSC}.Thank you for shopping at Mountea Time.')
                     break
                 # If userPayment!=total_shop
                 else:
@@ -533,7 +590,7 @@ def update_menu():
             3. Desc Item
             4. Price Item
             5. Stock Item
-            
+
             Choose part of menu you want to update: """))
 
             # If user choose to update Category Name of Item
@@ -769,7 +826,7 @@ def user_main_menu(a):
 
     if role=='Owner' or role=='Manager':
         main_menu()
-        
+    
     # If dictStaff['Role'][role]=='Staff'
     else:
         staff_main_menu()
@@ -842,6 +899,7 @@ def main_menu():
     elif user==10:
         print("="*33,"👋👋👋 Thank you for visiting Mountea Time. See you again! 👋👋👋","="*33)
         staff_main_menu()
+
     # Else (not choose number 1-10)
     else:
         print("[‼️] You entered wrong number. Please enter number code 1-10.")
