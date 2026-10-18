@@ -53,7 +53,7 @@ Delete Function:<br>
 3. Delete active promo based on item<br>
 4. Delete active promo based on minimum total purchase.<br>
 <br>
-There is a conditional statement for delete function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.
+There is a conditional statement for delete function. If the item still has an active promo, there is a notice that if we proceed, the promotion will also be removed.<br>
 <br>
 
 How to use this CRUD Program:<br>
