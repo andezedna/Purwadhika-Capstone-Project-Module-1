@@ -29,7 +29,11 @@ Create Function:
    Inputs that required for this request are Item ID and quantity its item.
    
 Read Function:
-Read all active item, read all active promo based on item, read all active promo based on minimum total purchase, read multiple item/s based on search by Item ID/ Item Name/ Category, read user's purchase invoice.
+1. Read all active item
+2. Read all active promo based on item
+3. Read all active promo based on minimum total purchase
+4. Read multiple item/s based on search by Item ID/ Item Name/ Category
+5. Read user's purchase invoice.
 All of the read functions above can display full details of the selected request, if any.
 
 Update Function:
